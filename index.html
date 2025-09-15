@@ -14,14 +14,11 @@
     body { font-family: 'Inter', system-ui, -apple-system, Segoe UI, Roboto, 'Helvetica Neue', Arial, 'Noto Sans', 'Apple Color Emoji','Segoe UI Emoji'; }
     .snap-x { scroll-snap-type: x mandatory; }
     .snap-start { scroll-snap-align: start; }
-    .img-grad::after{
-      content:""; position:absolute; inset:0;
-      background: linear-gradient(to top, rgba(0,0,0,.55), rgba(0,0,0,0));
-    }
-    .btn{ @apply inline-flex items-center justify-center rounded-xl px-4 py-3 text-white font-semibold shadow-md; background: var(--brand); }
+    .img-grad::after{ content:""; position:absolute; inset:0; background: linear-gradient(to top, rgba(0,0,0,.55), rgba(0,0,0,0)); }
+    .btn{ background: var(--brand); display:inline-flex; align-items:center; justify-content:center; border-radius:12px; padding:.75rem 1rem; color:#fff; font-weight:600; box-shadow:0 6px 16px rgba(22,163,74,.25); }
     .btn:active{ transform: translateY(1px); }
-    .btn-outline{ @apply inline-flex items-center justify-center rounded-xl px-4 py-2 font-semibold border; border-color: var(--brand); color: var(--brand); }
-    .badge{ @apply text-xs font-semibold px-2 py-1 rounded-full bg-white/90 text-gray-700; }
+    .btn-outline{ display:inline-flex; align-items:center; justify-content:center; border-radius:12px; padding:.6rem 1rem; font-weight:600; border:2px solid var(--brand); color:var(--brand); background:transparent; }
+    .badge{ font-size:.75rem; font-weight:700; padding:.25rem .5rem; border-radius:999px; background:#fff; color:#374151; }
     .sticky-cart-shadow{ box-shadow: 0 -8px 30px rgba(0,0,0,.2);}
   </style>
 </head>
@@ -29,7 +26,7 @@
 
   <!-- HEADER / HERO -->
   <header class="relative">
-    <img src="img/hero-plato.jpg" alt="Especial de la casa" class="w-full h-[42vh] object-cover" />
+    <img src="img/pizza-demo.jpeg" alt="Especial de la casa" class="w-full h-[42vh] object-cover" />
     <div class="absolute inset-0 bg-black/30"></div>
     <div class="absolute inset-x-0 bottom-0 p-4 sm:p-6">
       <div class="max-w-6xl mx-auto text-white">
@@ -60,11 +57,10 @@
   <main id="carta" class="max-w-6xl mx-auto px-4 py-6">
     <!-- GRID DE PRODUCTOS -->
     <section id="grid" class="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-      <!-- CARD (usa data-category) -->
-      <!-- Ejemplo 1 -->
+      <!-- Burger -->
       <article class="group relative rounded-2xl overflow-hidden border data-[hidden=true]:hidden" data-category="principales">
         <div class="relative h-56 sm:h-64">
-          <img src="img/burger-clasica.jpg" alt="Burger Clásica" class="w-full h-full object-cover">
+          <img src="img/hamburguesa-demo.jpeg" alt="Burger Clásica" class="w-full h-full object-cover">
           <div class="absolute top-3 left-3 flex gap-2">
             <span class="badge">⭐ Más pedido</span>
           </div>
@@ -80,10 +76,10 @@
         </div>
       </article>
 
-      <!-- Ejemplo 2 -->
+      <!-- Papas -->
       <article class="group relative rounded-2xl overflow-hidden border data-[hidden=true]:hidden" data-category="entradas">
         <div class="relative h-56 sm:h-64">
-          <img src="img/papas-cheddar.jpg" alt="Papas con cheddar y verdeo" class="w-full h-full object-cover">
+          <img src="img/papas-demo.jpeg" alt="Papas con cheddar y verdeo" class="w-full h-full object-cover">
           <div class="img-grad absolute inset-0"></div>
           <div class="absolute bottom-3 left-3 right-3 text-white">
             <h3 class="text-xl font-extrabold">Papas Cheddar</h3>
@@ -96,14 +92,14 @@
         </div>
       </article>
 
-      <!-- Ejemplo 3 -->
+      <!-- Bebida -->
       <article class="group relative rounded-2xl overflow-hidden border data-[hidden=true]:hidden" data-category="bebidas">
         <div class="relative h-56 sm:h-64">
-          <img src="img/gaseosa-500.jpg" alt="Gaseosa 500 ml" class="w-full h-full object-cover">
+          <img src="img/refresco-demo.jpeg" alt="Coca-Cola 500 ml" class="w-full h-full object-cover">
           <div class="img-grad absolute inset-0"></div>
           <div class="absolute bottom-3 left-3 right-3 text-white">
-            <h3 class="text-xl font-extrabold">Gaseosa 500 ml</h3>
-            <p class="text-white/90 text-sm">Variadas (consultar)</p>
+            <h3 class="text-xl font-extrabold">Coca-Cola 500 ml</h3>
+            <p class="text-white/90 text-sm">Botella individual bien fría.</p>
             <div class="mt-2 flex items-center justify-between">
               <span class="text-lg font-bold">$1.400</span>
               <button class="btn !py-2 !px-3 text-sm" data-add data-id="p3">Agregar</button>
@@ -112,10 +108,10 @@
         </div>
       </article>
 
-      <!-- Ejemplo 4 -->
+      <!-- Postre -->
       <article class="group relative rounded-2xl overflow-hidden border data-[hidden=true]:hidden" data-category="postres">
         <div class="relative h-56 sm:h-64">
-          <img src="img/cheesecake.jpg" alt="Cheesecake de frutos rojos" class="w-full h-full object-cover">
+          <img src="img/postre-demo.jpeg" alt="Cheesecake de frutos rojos" class="w-full h-full object-cover">
           <div class="img-grad absolute inset-0"></div>
           <div class="absolute bottom-3 left-3 right-3 text-white">
             <h3 class="text-xl font-extrabold">Cheesecake</h3>
@@ -128,10 +124,10 @@
         </div>
       </article>
 
-      <!-- Ejemplo 5 -->
+      <!-- Pizza -->
       <article class="group relative rounded-2xl overflow-hidden border data-[hidden=true]:hidden" data-category="principales">
         <div class="relative h-56 sm:h-64">
-          <img src="img/pizza-mozzarella.jpg" alt="Pizza Muzza individual" class="w-full h-full object-cover">
+          <img src="img/pizza-demo.jpeg" alt="Pizza Muzza individual" class="w-full h-full object-cover">
           <div class="img-grad absolute inset-0"></div>
           <div class="absolute bottom-3 left-3 right-3 text-white">
             <h3 class="text-xl font-extrabold">Pizza Muzza (ind.)</h3>
@@ -144,14 +140,14 @@
         </div>
       </article>
 
-      <!-- Ejemplo 6 -->
+      <!-- Empanadas (NUEVO) -->
       <article class="group relative rounded-2xl overflow-hidden border data-[hidden=true]:hidden" data-category="entradas">
         <div class="relative h-56 sm:h-64">
-          <img src="img/empanadas.jpg" alt="Empanadas clásicas (docena)" class="w-full h-full object-cover">
+          <img src="img/empanadas-demo.jpeg" alt="Empanadas clásicas (docena)" class="w-full h-full object-cover">
           <div class="img-grad absolute inset-0"></div>
           <div class="absolute bottom-3 left-3 right-3 text-white">
             <h3 class="text-xl font-extrabold">Empanadas (12)</h3>
-            <p class="text-white/90 text-sm">Carne/syq/jyq mixtas</p>
+            <p class="text-white/90 text-sm">Carne / jyq / pollo (mixtas)</p>
             <div class="mt-2 flex items-center justify-between">
               <span class="text-lg font-bold">$7.800</span>
               <button class="btn !py-2 !px-3 text-sm" data-add data-id="p6">Agregar</button>
@@ -229,7 +225,7 @@
     const CATALOG = {
       p1: { id:"p1", name:"Burger Clásica", price:4800, category:"principales" },
       p2: { id:"p2", name:"Papas Cheddar",  price:3200, category:"entradas"   },
-      p3: { id:"p3", name:"Gaseosa 500 ml", price:1400, category:"bebidas"    },
+      p3: { id:"p3", name:"Coca-Cola 500 ml", price:1400, category:"bebidas"  },
       p4: { id:"p4", name:"Cheesecake",     price:2900, category:"postres"    },
       p5: { id:"p5", name:"Pizza Muzza (ind.)", price:4200, category:"principales" },
       p6: { id:"p6", name:"Empanadas (12)", price:7800, category:"entradas"   },
@@ -289,7 +285,6 @@
         `;
         ul.appendChild(li);
       });
-      // bind qty buttons
       ul.querySelectorAll('[data-inc]').forEach(b=>b.onclick=()=>changeQty(b.getAttribute('data-inc'),+1));
       ul.querySelectorAll('[data-dec]').forEach(b=>b.onclick=()=>changeQty(b.getAttribute('data-dec'),-1));
     }
@@ -341,7 +336,7 @@
       });
     });
 
-    // UX: pequeño “ping” al sumar
+    // UX: “ping” al sumar
     function pingCart(){
       const el = document.getElementById('stickyCart');
       el.animate([{ transform:'translateY(0)'},{ transform:'translateY(-4px)'},{ transform:'translateY(0)'}],{ duration:220, easing:'ease-out' });
