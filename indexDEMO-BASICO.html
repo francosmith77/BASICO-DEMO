@@ -1,0 +1,354 @@
+﻿<!DOCTYPE html>
+<html lang="es" class="scroll-smooth">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Carta Digital • Demo Esencial</title>
+  <meta name="description" content="Carta digital visual con carrito ligero y pedido por WhatsApp. Demo Esencial.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    :root { --brand:#16a34a; }
+    body { font-family: 'Inter', system-ui, -apple-system, Segoe UI, Roboto, 'Helvetica Neue', Arial, 'Noto Sans', 'Apple Color Emoji','Segoe UI Emoji'; }
+    .snap-x { scroll-snap-type: x mandatory; }
+    .snap-start { scroll-snap-align: start; }
+    .img-grad::after{
+      content:""; position:absolute; inset:0;
+      background: linear-gradient(to top, rgba(0,0,0,.55), rgba(0,0,0,0));
+    }
+    .btn{ @apply inline-flex items-center justify-center rounded-xl px-4 py-3 text-white font-semibold shadow-md; background: var(--brand); }
+    .btn:active{ transform: translateY(1px); }
+    .btn-outline{ @apply inline-flex items-center justify-center rounded-xl px-4 py-2 font-semibold border; border-color: var(--brand); color: var(--brand); }
+    .badge{ @apply text-xs font-semibold px-2 py-1 rounded-full bg-white/90 text-gray-700; }
+    .sticky-cart-shadow{ box-shadow: 0 -8px 30px rgba(0,0,0,.2);}
+  </style>
+</head>
+<body class="bg-white text-gray-800">
+
+  <!-- HEADER / HERO -->
+  <header class="relative">
+    <img src="img/hero-plato.jpg" alt="Especial de la casa" class="w-full h-[42vh] object-cover" />
+    <div class="absolute inset-0 bg-black/30"></div>
+    <div class="absolute inset-x-0 bottom-0 p-4 sm:p-6">
+      <div class="max-w-6xl mx-auto text-white">
+        <h1 class="text-3xl sm:text-4xl font-extrabold drop-shadow">Tu Menú en el Celular</h1>
+        <p class="mt-1 text-white/90">Explorá la carta, armá tu pedido y enviá por WhatsApp. Sin complicaciones.</p>
+        <div class="mt-3 flex gap-2">
+          <a href="#carta" class="btn">Ver Carta</a>
+          <a href="#como-funciona" class="btn-outline">¿Cómo funciona?</a>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- NAV CATEGORÍAS -->
+  <nav class="sticky top-0 z-40 bg-white/95 backdrop-blur border-b">
+    <div class="max-w-6xl mx-auto px-4 py-2">
+      <div class="flex items-center gap-2 overflow-x-auto snap-x">
+        <button data-cat="todo" class="snap-start whitespace-nowrap px-3 py-2 rounded-full bg-gray-900 text-white text-sm font-semibold">Todo</button>
+        <button data-cat="entradas" class="snap-start whitespace-nowrap px-3 py-2 rounded-full bg-gray-100 text-gray-900 text-sm font-semibold">Entradas</button>
+        <button data-cat="principales" class="snap-start whitespace-nowrap px-3 py-2 rounded-full bg-gray-100 text-gray-900 text-sm font-semibold">Principales</button>
+        <button data-cat="postres" class="snap-start whitespace-nowrap px-3 py-2 rounded-full bg-gray-100 text-gray-900 text-sm font-semibold">Postres</button>
+        <button data-cat="bebidas" class="snap-start whitespace-nowrap px-3 py-2 rounded-full bg-gray-100 text-gray-900 text-sm font-semibold">Bebidas</button>
+      </div>
+    </div>
+  </nav>
+
+  <!-- CARTA -->
+  <main id="carta" class="max-w-6xl mx-auto px-4 py-6">
+    <!-- GRID DE PRODUCTOS -->
+    <section id="grid" class="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+      <!-- CARD (usa data-category) -->
+      <!-- Ejemplo 1 -->
+      <article class="group relative rounded-2xl overflow-hidden border data-[hidden=true]:hidden" data-category="principales">
+        <div class="relative h-56 sm:h-64">
+          <img src="img/burger-clasica.jpg" alt="Burger Clásica" class="w-full h-full object-cover">
+          <div class="absolute top-3 left-3 flex gap-2">
+            <span class="badge">⭐ Más pedido</span>
+          </div>
+          <div class="img-grad absolute inset-0"></div>
+          <div class="absolute bottom-3 left-3 right-3 text-white">
+            <h3 class="text-xl font-extrabold">Burger Clásica</h3>
+            <p class="text-white/90 text-sm">Doble carne, queso, lechuga, tomate, alioli</p>
+            <div class="mt-2 flex items-center justify-between">
+              <span class="text-lg font-bold">$4.800</span>
+              <button class="btn !py-2 !px-3 text-sm" data-add data-id="p1">Agregar</button>
+            </div>
+          </div>
+        </div>
+      </article>
+
+      <!-- Ejemplo 2 -->
+      <article class="group relative rounded-2xl overflow-hidden border data-[hidden=true]:hidden" data-category="entradas">
+        <div class="relative h-56 sm:h-64">
+          <img src="img/papas-cheddar.jpg" alt="Papas con cheddar y verdeo" class="w-full h-full object-cover">
+          <div class="img-grad absolute inset-0"></div>
+          <div class="absolute bottom-3 left-3 right-3 text-white">
+            <h3 class="text-xl font-extrabold">Papas Cheddar</h3>
+            <p class="text-white/90 text-sm">Crocantes con cheddar y verdeo</p>
+            <div class="mt-2 flex items-center justify-between">
+              <span class="text-lg font-bold">$3.200</span>
+              <button class="btn !py-2 !px-3 text-sm" data-add data-id="p2">Agregar</button>
+            </div>
+          </div>
+        </div>
+      </article>
+
+      <!-- Ejemplo 3 -->
+      <article class="group relative rounded-2xl overflow-hidden border data-[hidden=true]:hidden" data-category="bebidas">
+        <div class="relative h-56 sm:h-64">
+          <img src="img/gaseosa-500.jpg" alt="Gaseosa 500 ml" class="w-full h-full object-cover">
+          <div class="img-grad absolute inset-0"></div>
+          <div class="absolute bottom-3 left-3 right-3 text-white">
+            <h3 class="text-xl font-extrabold">Gaseosa 500 ml</h3>
+            <p class="text-white/90 text-sm">Variadas (consultar)</p>
+            <div class="mt-2 flex items-center justify-between">
+              <span class="text-lg font-bold">$1.400</span>
+              <button class="btn !py-2 !px-3 text-sm" data-add data-id="p3">Agregar</button>
+            </div>
+          </div>
+        </div>
+      </article>
+
+      <!-- Ejemplo 4 -->
+      <article class="group relative rounded-2xl overflow-hidden border data-[hidden=true]:hidden" data-category="postres">
+        <div class="relative h-56 sm:h-64">
+          <img src="img/cheesecake.jpg" alt="Cheesecake de frutos rojos" class="w-full h-full object-cover">
+          <div class="img-grad absolute inset-0"></div>
+          <div class="absolute bottom-3 left-3 right-3 text-white">
+            <h3 class="text-xl font-extrabold">Cheesecake</h3>
+            <p class="text-white/90 text-sm">Frutos rojos y base crocante</p>
+            <div class="mt-2 flex items-center justify-between">
+              <span class="text-lg font-bold">$2.900</span>
+              <button class="btn !py-2 !px-3 text-sm" data-add data-id="p4">Agregar</button>
+            </div>
+          </div>
+        </div>
+      </article>
+
+      <!-- Ejemplo 5 -->
+      <article class="group relative rounded-2xl overflow-hidden border data-[hidden=true]:hidden" data-category="principales">
+        <div class="relative h-56 sm:h-64">
+          <img src="img/pizza-mozzarella.jpg" alt="Pizza Muzza individual" class="w-full h-full object-cover">
+          <div class="img-grad absolute inset-0"></div>
+          <div class="absolute bottom-3 left-3 right-3 text-white">
+            <h3 class="text-xl font-extrabold">Pizza Muzza (ind.)</h3>
+            <p class="text-white/90 text-sm">Muzzarella, orégano, aceitunas</p>
+            <div class="mt-2 flex items-center justify-between">
+              <span class="text-lg font-bold">$4.200</span>
+              <button class="btn !py-2 !px-3 text-sm" data-add data-id="p5">Agregar</button>
+            </div>
+          </div>
+        </div>
+      </article>
+
+      <!-- Ejemplo 6 -->
+      <article class="group relative rounded-2xl overflow-hidden border data-[hidden=true]:hidden" data-category="entradas">
+        <div class="relative h-56 sm:h-64">
+          <img src="img/empanadas.jpg" alt="Empanadas clásicas (docena)" class="w-full h-full object-cover">
+          <div class="img-grad absolute inset-0"></div>
+          <div class="absolute bottom-3 left-3 right-3 text-white">
+            <h3 class="text-xl font-extrabold">Empanadas (12)</h3>
+            <p class="text-white/90 text-sm">Carne/syq/jyq mixtas</p>
+            <div class="mt-2 flex items-center justify-between">
+              <span class="text-lg font-bold">$7.800</span>
+              <button class="btn !py-2 !px-3 text-sm" data-add data-id="p6">Agregar</button>
+            </div>
+          </div>
+        </div>
+      </article>
+
+    </section>
+
+    <!-- CÓMO FUNCIONA -->
+    <section id="como-funciona" class="mt-12 grid md:grid-cols-3 gap-6">
+      <div class="p-5 border rounded-2xl">
+        <h4 class="font-extrabold">1) Elegí</h4>
+        <p class="text-gray-600 mt-1">Tocá “Agregar” en tus platos favoritos.</p>
+      </div>
+      <div class="p-5 border rounded-2xl">
+        <h4 class="font-extrabold">2) Revisá</h4>
+        <p class="text-gray-600 mt-1">Abrí el carrito para ajustar cantidades.</p>
+      </div>
+      <div class="p-5 border rounded-2xl">
+        <h4 class="font-extrabold">3) Enviá por WhatsApp</h4>
+        <p class="text-gray-600 mt-1">El pedido se arma solo y se envía al local.</p>
+      </div>
+    </section>
+  </main>
+
+  <!-- STICKY CART -->
+  <div id="stickyCart" class="fixed inset-x-0 bottom-0 z-50 bg-white sticky-cart-shadow border-t">
+    <div class="max-w-6xl mx-auto px-4 py-3 flex items-center justify-between gap-3">
+      <button id="openCart" class="flex-1 btn-outline">Ver carrito (<span id="cartCount">0</span>)</button>
+      <button id="checkout" class="btn flex-1">Confirmar por WhatsApp</button>
+    </div>
+  </div>
+
+  <!-- DRAWER CARRITO -->
+  <div id="drawer" class="fixed inset-0 z-[60] hidden">
+    <div class="absolute inset-0 bg-black/40" data-close></div>
+    <aside class="absolute right-0 top-0 h-full w-full sm:w-[420px] bg-white p-5 overflow-y-auto">
+      <div class="flex items-center justify-between">
+        <h3 class="text-xl font-extrabold">Tu pedido</h3>
+        <button class="btn-outline" data-close>Cerrar</button>
+      </div>
+      <ul id="cartList" class="mt-4 space-y-4"></ul>
+      <div class="mt-6 border-t pt-4 flex items-center justify-between">
+        <span class="font-extrabold">Total</span>
+        <span id="cartTotal" class="text-lg font-extrabold">$0</span>
+      </div>
+      <div class="mt-4 grid grid-cols-2 gap-2">
+        <input id="clienteNombre" class="border rounded-xl px-3 py-2" placeholder="Tu nombre" />
+        <select id="clienteModo" class="border rounded-xl px-3 py-2">
+          <option value="Retiro">Retiro</option>
+          <option value="Delivery">Delivery</option>
+        </select>
+        <input id="clienteHora" class="border rounded-xl px-3 py-2 col-span-2" placeholder="Hora estimada (ej: 20:30)" />
+      </div>
+      <button id="checkout2" class="btn w-full mt-4">Enviar por WhatsApp</button>
+      <p class="text-xs text-gray-500 mt-3">*Es una demo. Las imágenes son ilustrativas.</p>
+    </aside>
+  </div>
+
+  <!-- FOOTER -->
+  <footer class="max-w-6xl mx-auto px-4 py-10 text-center text-sm text-gray-500">
+    Demo Esencial • Carta+Carrito WhatsApp • Hecho para brillar la comida 🍽️
+  </footer>
+
+  <!-- SCRIPT (carrito + filtros + WhatsApp) -->
+  <script>
+    // ======= CONFIG =======
+    const BRAND_NAME = "Demo Restaurante";
+    const WHATSAPP_NUMBER = "5493751000000"; // Reemplazar (código país+área+numero, sin +)
+    const CURRENCY = "ARS";
+
+    // Catálogo base (id debe coincidir con data-id de los botones)
+    const CATALOG = {
+      p1: { id:"p1", name:"Burger Clásica", price:4800, category:"principales" },
+      p2: { id:"p2", name:"Papas Cheddar",  price:3200, category:"entradas"   },
+      p3: { id:"p3", name:"Gaseosa 500 ml", price:1400, category:"bebidas"    },
+      p4: { id:"p4", name:"Cheesecake",     price:2900, category:"postres"    },
+      p5: { id:"p5", name:"Pizza Muzza (ind.)", price:4200, category:"principales" },
+      p6: { id:"p6", name:"Empanadas (12)", price:7800, category:"entradas"   },
+    };
+
+    // ======= STATE =======
+    const CART = { items: [], total: 0 };
+    const fmt = (n) => new Intl.NumberFormat('es-AR', { style:'currency', currency:CURRENCY }).format(n);
+
+    function addToCart(id){
+      const prod = CATALOG[id];
+      if(!prod) return;
+      const idx = CART.items.findIndex(it => it.id===id);
+      if(idx>-1){ CART.items[idx].qty++; }
+      else { CART.items.push({ id, name:prod.name, price:prod.price, qty:1 }); }
+      recalc();
+      pingCart();
+    }
+
+    function changeQty(id, delta){
+      const idx = CART.items.findIndex(it => it.id===id);
+      if(idx===-1) return;
+      CART.items[idx].qty += delta;
+      if(CART.items[idx].qty<=0){ CART.items.splice(idx,1); }
+      recalc();
+    }
+
+    function recalc(){
+      CART.total = CART.items.reduce((a,b)=>a + b.price*b.qty, 0);
+      document.getElementById('cartCount').textContent = CART.items.reduce((a,b)=>a+b.qty,0);
+      document.getElementById('cartTotal').textContent = fmt(CART.total);
+      renderList();
+      window.__CART__ = { brand: BRAND_NAME, items: CART.items.map(i=>({qty:i.qty,name:i.name})), total: CART.total };
+    }
+
+    function renderList(){
+      const ul = document.getElementById('cartList');
+      if(!ul) return;
+      ul.innerHTML = '';
+      if(CART.items.length===0){
+        ul.innerHTML = '<li class="text-gray-500">Tu carrito está vacío.</li>';
+        return;
+      }
+      CART.items.forEach(i=>{
+        const li = document.createElement('li');
+        li.className = "flex items-center justify-between gap-3";
+        li.innerHTML = `
+          <div>
+            <div class="font-semibold">${i.name}</div>
+            <div class="text-sm text-gray-500">${fmt(i.price)} c/u</div>
+          </div>
+          <div class="flex items-center gap-2">
+            <button class="btn-outline !px-3 !py-1" data-dec="${i.id}">-</button>
+            <span class="w-6 text-center font-semibold">${i.qty}</span>
+            <button class="btn-outline !px-3 !py-1" data-inc="${i.id}">+</button>
+          </div>
+        `;
+        ul.appendChild(li);
+      });
+      // bind qty buttons
+      ul.querySelectorAll('[data-inc]').forEach(b=>b.onclick=()=>changeQty(b.getAttribute('data-inc'),+1));
+      ul.querySelectorAll('[data-dec]').forEach(b=>b.onclick=()=>changeQty(b.getAttribute('data-dec'),-1));
+    }
+
+    function buildOrderMessage(){
+      const nombre = document.getElementById('clienteNombre')?.value || "—";
+      const modo   = document.getElementById('clienteModo')?.value || "—";
+      const hora   = document.getElementById('clienteHora')?.value || "—";
+      const lines = CART.items.map(i => `- ${i.qty}× ${i.name}`);
+      const msg = [
+        `Pedido ${BRAND_NAME}:`,
+        ...lines,
+        `Total estimado: ${fmt(CART.total)}`,
+        `Nombre: ${nombre} | ${modo} | Hora: ${hora}`
+      ].join("\n");
+      return encodeURIComponent(msg);
+    }
+
+    function goWhatsApp(){
+      if(CART.items.length===0){ alert("Tu carrito está vacío."); return; }
+      const url = `https://wa.me/${WHATSAPP_NUMBER}?text=${buildOrderMessage()}`;
+      window.location.href = url;
+    }
+
+    // Drawer
+    const drawer = document.getElementById('drawer');
+    document.getElementById('openCart').onclick = ()=>{ drawer.classList.remove('hidden'); };
+    drawer.querySelectorAll('[data-close]').forEach(el => el.onclick = ()=> drawer.classList.add('hidden'));
+    document.getElementById('checkout').onclick  = goWhatsApp;
+    document.getElementById('checkout2').onclick = goWhatsApp;
+
+    // Botones agregar
+    document.querySelectorAll('[data-add]').forEach(b=>{
+      b.addEventListener('click', ()=> addToCart(b.getAttribute('data-id')));
+    });
+
+    // Filtro categorías
+    const buttons = document.querySelectorAll('nav [data-cat]');
+    buttons.forEach(btn=>{
+      btn.addEventListener('click', ()=>{
+        const cat = btn.getAttribute('data-cat');
+        buttons.forEach(b=>b.classList.remove('bg-gray-900','text-white'));
+        btn.classList.add('bg-gray-900','text-white');
+        document.querySelectorAll('#grid article').forEach(card=>{
+          const c = card.getAttribute('data-category');
+          const show = (cat==='todo' || c===cat);
+          card.dataset.hidden = show ? "false" : "true";
+        });
+      });
+    });
+
+    // UX: pequeño “ping” al sumar
+    function pingCart(){
+      const el = document.getElementById('stickyCart');
+      el.animate([{ transform:'translateY(0)'},{ transform:'translateY(-4px)'},{ transform:'translateY(0)'}],{ duration:220, easing:'ease-out' });
+    }
+
+    // init
+    recalc();
+  </script>
+</body>
+</html>
